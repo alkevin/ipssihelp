@@ -151,8 +151,8 @@ class Address(models.Model):
 class Category(models.Model):
     name = models.CharField(
         max_length=255,
-        blank=True,
-        null=True,
+        blank=False,
+        null=False,
         verbose_name=_('Title')
     )
     description = models.TextField(
@@ -188,6 +188,12 @@ class Ad(models.Model):
         null=True,
         verbose_name=_('Description')
     )
+    category = models.ForeignKey(
+        'Category',
+        on_delete=models.PROTECT,
+        blank=True,
+        verbose_name=_('Category')
+    )
     type = models.CharField(
         max_length=32,
         choices=(
@@ -219,12 +225,6 @@ class Ad(models.Model):
         editable=False,
         verbose_name=_('Created date')
     )
-    category = models.ForeignKey(
-        'Category',
-        on_delete=models.PROTECT,
-        blank=True,
-        verbose_name=_('Category')
-    )
     user = models.ForeignKey(
         'User',
         on_delete=models.PROTECT,
@@ -247,8 +247,18 @@ class Ad(models.Model):
     def __str__(self):
         return '{} - {}'.format(
             self.title,
-            self.user.fisrt_name #self.pk
+            self.pk
         )
+
+    @property
+    def is_supply(self):
+        if self.type == 'supply':
+            return True
+
+    @property
+    def is_demand(self):
+        if self.type == 'demand':
+            return True
 
 #Conversation
 class Conversation(models.Model):

@@ -20,6 +20,21 @@ First we’ll need to create a user who can login to the admin site. Run the fol
 python manage.py createsuperuser
 ```
 
+#### Portainer
+```bash
+http://localhost:30033
+```
+
+#### pgAdmin
+```bash
+http://localhost:30032
+```
+
+#### Django administration
+```bash
+http://localhost:30031/admin/
+```
+
 #### Start project
 ```bash
 git clone
@@ -31,6 +46,10 @@ connect
 pip-compile requirements.in
 pip install -r requirements.txt
 cd ipssihelp
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py makemigration
+python manage.py migrate
 python manage.py runserver 0:8000
 ```
 
@@ -42,5 +61,9 @@ docker-compose exec ipssi-python /bin/bash
 pip-compile requirements.in
 pip install -r requirements.txt
 cd ipssihelp
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py makemigration
+python manage.py migrate
 python manage.py runserver 0:8000
 ```
