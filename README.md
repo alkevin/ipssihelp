@@ -31,6 +31,10 @@ connect
 pip-compile requirements.in
 pip install -r requirements.txt
 cd ipssihelp
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py makemigration
+python manage.py migrate
 python manage.py runserver 0:8000
 ```
 
@@ -42,5 +46,9 @@ docker-compose exec ipssi-python /bin/bash
 pip-compile requirements.in
 pip install -r requirements.txt
 cd ipssihelp
+python manage.py migrate
+python manage.py createsuperuser
+python manage.py makemigration
+python manage.py migrate
 python manage.py runserver 0:8000
 ```
