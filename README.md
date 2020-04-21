@@ -28,6 +28,7 @@ go to portainer : localhost:30033
 user / pass
 container : ipssi-python  petite flèche : >
 connect
+pip-compile requirements.in
 pip install -r requirements.txt
 cd ipssihelp
 python manage.py runserver 0:8000
@@ -38,6 +39,7 @@ python manage.py runserver 0:8000
 git clone
 docker-compose up
 docker-compose exec ipssi-python /bin/bash
+pip-compile requirements.in
 pip install -r requirements.txt
 cd ipssihelp
 python manage.py runserver 0:8000
