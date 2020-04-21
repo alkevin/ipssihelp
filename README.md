@@ -20,6 +20,21 @@ First we’ll need to create a user who can login to the admin site. Run the fol
 python manage.py createsuperuser
 ```
 
+#### Portainer
+```bash
+http://localhost:30033
+```
+
+#### pgAdmin
+```bash
+http://localhost:30032
+```
+
+#### Django administration
+```bash
+http://localhost:30031/admin/
+```
+
 #### Start project
 ```bash
 git clone
