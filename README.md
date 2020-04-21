@@ -19,6 +19,7 @@ First we’ll need to create a user who can login to the admin site. Run the fol
 ```bash
 python manage.py createsuperuser
 ```
+
 #### Start project
 ```bash
 git clone
