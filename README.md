@@ -19,3 +19,23 @@ First we’ll need to create a user who can login to the admin site. Run the fol
 ```bash
 python manage.py createsuperuser
 ```
+#### Start project
+```bash
+git clone
+docker-compose up
+go to portainer : localhost:30033
+user / pass
+container : ipssi-python  petite flèche : >
+connect
+cd ipssihelp
+python manage.py runserver 0:8000
+```
+
+#### Start LOCALY project
+```bash
+git clone
+docker-compose up
+docker-compose exec ipssi-python /bin/bash
+cd ipssihelp
+python manage.py runserver 0:8000
+```
