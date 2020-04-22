@@ -1,13 +1,13 @@
-from django.urls import re_path
+from django.urls import re_path, path
 from . import views
 
 app_name = 'worker'
 
 urlpatterns = [
-    re_path(r'^$', views.home, name='home'),
-    re_path(r'^user$', views.users, name='user'),
-    re_path(r'^ad$', views.ads, name='ad'),
-    re_path(r'^ad/supply$', views.ads_supply, name='supply'),
-    re_path(r'^ad/demand$', views.ads_demand, name='demand'),
-    re_path(r'^ad/([0-9]+)/$', views.ad_details, name='detail'),
+    path('', views.home, name='home'),
+    path('user', views.users, name='users'),
+    path('ad', views.ad_list, name='ad_list'),
+    path('ad/supply', views.ad_supply, name='ad_supply'),
+    path('ad/demand', views.ad_demand, name='ad_demand'),
+    re_path(r'ad/([0-9]+)/', views.ad_details, name='ad_details'),
 ]

@@ -35,7 +35,7 @@ class MessageInline(StackedInline):
 
 @admin.register(User)
 class UserAdmin(admin.ModelAdmin):
-    list_display = ('email', '_name', 'age', 'phone', '_address_full', 'updated', 'created')
+    list_display = ('email', '_name', '_age', 'phone', '_address_full', 'updated', 'created')
     readonly_fields = ('created', 'updated')
     search_fields = ('email', 'first_name', 'last_name')
     list_display_links = ['email', '_name']
@@ -54,24 +54,24 @@ class UserAdmin(admin.ModelAdmin):
         return output
     _name.short_description = _('Name')
 
-    def age(self, obj):
-        age = '--'
+    def _age(self, obj):
+        output = '--'
         if obj.birth_date:
             my_birth_date = obj.birth_date
             diff = relativedelta.relativedelta(datetime.now(), my_birth_date)
 
-            age = format_html('<strong>{}</strong> ans'.format(
+            output = format_html('<strong>{}</strong> ans'.format(
                 diff.years,
             ))
-        return age
-    age.short_description = _('Age')
+        return output
+    _age.short_description = _('Age')
 
     def _address_full(self, obj):
         output = '{}'.format(
             obj.address
         )
         return output
-    _name.short_description = _('Address')
+    _address_full.short_description = _('Address')
 
 
 @admin.register(Ad)

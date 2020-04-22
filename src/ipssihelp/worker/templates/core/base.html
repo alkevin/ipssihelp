@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>
+        KAECorona&nbsp;|&nbsp;{% block title %}{% endblock %}
+    </title>
+    {% include 'core/stylesheets.html' %}
+</head>
+<body>
+
+<nav class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-0">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">KAECorona</a>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+        {% include 'core/navbar.html' %}
+        {% block body %}{% endblock %}
+    </div>
+</div>
+
+{% include 'core/javascripts.html' %}
+
+</body>
+</html>

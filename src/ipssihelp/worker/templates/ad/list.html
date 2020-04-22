@@ -1,9 +1,19 @@
-{% extends 'base.html' %}
+{% extends 'core/base.html' %}
 
 {% block body %}
 
-{% if ads %}
-<table class="table">
+<main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
+        <h1 class="h2">Ads</h1>
+        <div class="btn-toolbar mb-2 mb-md-0">
+            <a href="#" class="btn btn-sm btn-outline-success">
+                <span data-feather="plus-circle"></span>
+                Add
+            </a>
+        </div>
+    </div>
+    {% if ads %}
+    <table class="table">
         <thead>
             <tr>
                 <th scope="col">Title</th>
@@ -31,8 +41,9 @@
             {% endfor %}
         </tbody>
     </table>
-{% else %}
-    <span>No Ad</span>
-{% endif %}
+    {% else %}
+        <span>No Ad</span>
+    {% endif %}
+</main>
 
 {% endblock %}
