@@ -4,40 +4,34 @@
 
 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3">
-        <h1 class="h2">Ads</h1>
-        <div class="btn-toolbar mb-2 mb-md-0">
-            <a href="#" class="btn btn-sm btn-outline-success">
-                <span data-feather="plus-circle"></span>
-                Add
-            </a>
-        </div>
+        <h1 class="h2">Demands</h1>
     </div>
     {% if ads %}
     <table class="table">
         <thead>
-        <tr>
-            <th scope="col">Title</th>
-            <th scope="col">Type</th>
-            <th scope="col">Status</th>
-            <th scope="col">Created By</th>
-        </tr>
+            <tr>
+                <th scope="col">Title</th>
+                <th scope="col">Type</th>
+                <th scope="col">Status</th>
+                <th scope="col">Created By</th>
+            </tr>
         </thead>
         <tbody>
         {% for ad in ads %}
-        <tr>
-            <td>
-                <a href="#">
-                    {{ ad.title }}
-                </a>
-            </td>
-            <td>{{ ad.type }}</td>
-            <td>{{ ad.status }}</td>
-            <td>
-                {{ ad.user.first_name | slice:":1" }}
-                .
-                {{ ad.user.last_name }}
-            </td>
-        </tr>
+            <tr>
+                <td>
+                    <a href="{% url 'worker:ad_details' ad.id %}">
+                        {{ ad.title }}
+                    </a>
+                </td>
+                <td>{{ ad.type }}</td>
+                <td>{{ ad.status }}</td>
+                <td>
+                    {{ ad.user.first_name | slice:":1" }}
+                    .
+                    {{ ad.user.last_name }}
+                </td>
+            </tr>
         {% endfor %}
         </tbody>
     </table>
