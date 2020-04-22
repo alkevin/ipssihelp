@@ -1,35 +1,34 @@
 from django.db import models
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import AbstractUser
+
 
 # Create your models here.
 
-#User
-class User(models.Model):
+# User
+class User(AbstractUser):
+    username = models.CharField(
+        verbose_name=_('Username'),
+        max_length=100,
+        unique=False,
+        blank=True,
+        null=True,
+    )
     email = models.EmailField(
-        max_length=254,
+        verbose_name=_('Email'),
+        max_length=100,
         unique=True,
-        verbose_name=_('Email')
     )
     gender = models.CharField(
         max_length=1,
         choices=(
-            ('w',_('Women')),
-            ('m',_('Man')),
-            ('o',_('Other')),
+            ('w', _('Women')),
+            ('m', _('Man')),
+            ('o', _('Other')),
         ),
         blank=True,
         null=True,
         verbose_name=_('Gender')
-    )
-    first_name = models.CharField(
-        max_length=30,
-        blank=True,
-        verbose_name=_('First name')
-    )
-    last_name = models.CharField(
-        max_length=150,
-        blank=True,
-        verbose_name=_('Last name')
     )
     phone = models.CharField(
         max_length=16,
@@ -47,17 +46,15 @@ class User(models.Model):
         editable=False,
         verbose_name=_('Updated date')
     )
-    created = models.DateTimeField(
-        auto_now_add=True,
-        editable=False,
-        verbose_name=_('Created date')
-    )
+
+    USERNAME_FIELD = 'email'
+    REQUIRED_FIELDS = ['first_name', 'last_name']
 
     class Meta:
         verbose_name = _('User')
         verbose_name_plural = _('Users')
         db_table = 'user'
-        unique_together = ['email','phone']
+        unique_together = ['email', 'phone']
         indexes = [
             models.Index(fields=[
                 'email',
@@ -71,7 +68,8 @@ class User(models.Model):
             self.last_name
         )
 
-#Address
+
+# Address
 class Address(models.Model):
     address1 = models.CharField(
         max_length=255,
@@ -136,7 +134,7 @@ class Address(models.Model):
         verbose_name = _('Address')
         verbose_name_plural = _('Addresses')
         indexes = [
-            models.Index(fields=['address1','postal_code']),
+            models.Index(fields=['address1', 'postal_code']),
         ]
         db_table = 'address'
 
@@ -147,7 +145,8 @@ class Address(models.Model):
             self.country
         )
 
-#Category
+
+# Category
 class Category(models.Model):
     name = models.CharField(
         max_length=255,
@@ -175,7 +174,8 @@ class Category(models.Model):
     def __str__(self):
         return str(self.name)
 
-#Ad
+
+# Ad
 class Ad(models.Model):
     title = models.CharField(
         max_length=128,
@@ -260,7 +260,8 @@ class Ad(models.Model):
         if self.type == 'demand':
             return True
 
-#Conversation
+
+# Conversation
 class Conversation(models.Model):
     updated = models.DateTimeField(
         auto_now=True,
@@ -291,7 +292,8 @@ class Conversation(models.Model):
             self.ad
         )
 
-#Message
+
+# Message
 class Message(models.Model):
     content = models.TextField(
         blank=True,
@@ -333,7 +335,8 @@ class Message(models.Model):
             self.conversation
         )
 
-#Mission
+
+# Mission
 class Mission(models.Model):
     updated = models.DateTimeField(
         auto_now=True,
@@ -364,7 +367,7 @@ class Mission(models.Model):
         verbose_name = _('Mission')
         verbose_name_plural = _('Missions')
         db_table = 'mission'
-    
+
     def __str__(self):
         return '{} - {}'.format(
             self.ad,

@@ -1,5 +1,6 @@
 from django.contrib import admin
 from django.contrib.admin import StackedInline
+from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import gettext_lazy as _
 from django.utils.html import format_html
 from datetime import datetime
@@ -32,14 +33,9 @@ class MessageInline(StackedInline):
     show_change_link = True
     extra = 0
 
-
 @admin.register(User)
-class UserAdmin(admin.ModelAdmin):
-    list_display = ('email', '_name', '_age', 'phone', '_address_full', 'updated', 'created')
-    readonly_fields = ('created', 'updated')
-    search_fields = ('email', 'first_name', 'last_name')
-    list_display_links = ['email', '_name']
-    ordering = ('created',)
+class UserAdmin(UserAdmin):
+    list_display = ('email', '_name', '_age', 'phone', '_address_full', 'updated')
     inlines = [
         AdInline,
         AddressInline,
