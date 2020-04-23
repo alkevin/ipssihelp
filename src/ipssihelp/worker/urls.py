@@ -9,5 +9,6 @@ urlpatterns = [
     path('ad', views.ad_list, name='ad_list'),
     path('ad/supply', views.ad_supply, name='ad_supply'),
     path('ad/demand', views.ad_demand, name='ad_demand'),
+    path('ad/add', views.ad_add, name='ad_add'),
     re_path(r'ad/([0-9]+)/', views.ad_details, name='ad_details'),
 ]
